@@ -53,7 +53,7 @@ IF (PSQL_EXECUTABLE)
 ENDIF (PSQL_EXECUTABLE)
 
 # If above doesn't work, then uncomment this line.
-# SET(DB_IS_CONFIGURED 1)
+#SET(DB_IS_CONFIGURED 1)
 
 LINK_LIBRARIES(
     atomspace

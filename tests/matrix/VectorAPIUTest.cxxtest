@@ -172,7 +172,7 @@ void VectorAPIUTest::test_marginals(void)
 	rc = eval->eval("(use-modules (opencog persist-sql))");
 	CHKERR;
 
-	rc = eval->eval("(sql-open \"postgres:///opencog_test?user=opencog_tester&password=cheese\")");
+	rc = eval->eval("(sql-open \"postgres:///opencog_test?user=opencog_tester&password=mik\")");
 	CHKERR;
 
 	// Compute and store all marginals
@@ -448,7 +448,7 @@ void VectorAPIUTest::xtest_dynamic(void)
 	std::string rc = eval->eval("(use-modules (opencog persist-sql))");
 	CHKERR;
 
-	rc = eval->eval("(sql-open \"postgres:///opencog_test?user=opencog_tester&password=cheese\")");
+	rc = eval->eval("(sql-open \"postgres:///opencog_test?user=opencog_tester&password=mik\")");
 	CHKERR;
 
 	std::string num = eval->eval("(dosi 'right-product (Word \"table\") (Word \"dog\"))");

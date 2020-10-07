@@ -117,7 +117,7 @@ LargeFlatUTest:: LargeFlatUTest(void)
 		// Get the database logins & etc from the config file.
 		dbname = config().get("TEST_DB_NAME", "opencog_test").c_str();
 		username = config().get("TEST_DB_USERNAME", "opencog_tester").c_str();
-		passwd = config().get("TEST_DB_PASSWD", "cheese").c_str();
+		passwd = config().get("TEST_DB_PASSWD", "mik").c_str();
 	}
 	catch (InvalidParamException &e)
 	{
