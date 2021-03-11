@@ -34,6 +34,11 @@ cdef extern from "opencog/atoms/atom_types/NameServer.h" namespace "opencog":
         Type getType(string typename)
         string getTypeName(Type t)
         Type getNumberOfClasses()
+
+        bint beginTypeDecls(const char* module)
+        void endTypeDecls() 
+        Type declType(const Type parent, const string& name)
+
     cdef cNameServer nameserver()
 
 cdef extern from "opencog/atoms/atom_types/atom_types.h" namespace "opencog":
@@ -127,6 +132,10 @@ cdef extern from "opencog/atoms/base/Atom.h" namespace "opencog":
 
         output_iterator getIncomingSetByType(output_iterator, Type type)
 
+        string to_string()
+        string to_short_string()
+        string id_to_string()
+
         # Conditionally-valid methods. Not defined for all atoms.
         string get_name()
         vector[cHandle] getOutgoingSet()
@@ -149,8 +158,6 @@ cdef extern from "opencog/atoms/base/Handle.h" namespace "opencog":
         cHandle(const cHandle&)
 
         cAtom* atom_ptr()
-        string to_string()
-        string to_short_string()
 
         bint operator==(cHandle h)
         bint operator!=(cHandle h)

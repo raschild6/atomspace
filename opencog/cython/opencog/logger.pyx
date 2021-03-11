@@ -48,8 +48,13 @@ cdef class Logger:
     @property
     def FINE(self): return FINE
 
-    def set_component(self, c):
-        self.clog.set_component(c)
+    def set_component(self, component_name):
+        py_byte_string = component_name.encode('UTF-8')
+        # create temporary cpp string
+        cdef string *c_component_name = new string(py_byte_string)
+        self.clog.set_component(deref(c_component_name))
+        del c_component_name
+
     cdef _set_level(self,int lvl):
         self.clog.set_level(<loglevel>lvl)
     def set_level(self,level_name):
@@ -73,6 +78,7 @@ cdef class Logger:
         loglvl = string_to_log_level(deref(c_level_name))
         del c_level_name
         return loglvl
+
     cdef _level_as_string(self):
         cdef string level_name
         level_name = log_level_to_string(<loglevel>self.clog.get_level())
@@ -106,8 +112,10 @@ cdef class Logger:
 
     def is_enabled(self, int lvl):
         return self.clog.is_enabled(<loglevel>lvl)
-    def use_stdout(self,use_it=True):
+    def use_stdout(self, use_it=True):
         self.clog.set_print_to_stdout_flag(use_it)
+    def set_sync(self, s):
+        self.clog.set_sync_flag(s)
 
 # This is the singleton instance created by cogutil.
 log = Logger()
